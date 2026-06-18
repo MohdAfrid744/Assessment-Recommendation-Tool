@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+requests
+beautifulsoup4
+rank-bm25
+streamlit
+google-generativeai
+groq
