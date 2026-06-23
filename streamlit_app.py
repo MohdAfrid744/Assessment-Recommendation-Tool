@@ -205,10 +205,9 @@ hr { border-color: rgba(255,255,255,0.08) !important; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(108,99,255,0.4); border-radius: 3px; }
 
-/* Quick Start template buttons — styled as cards via :has() scoping */
-/* A .tpl-marker div is injected just before the columns to anchor the selector */
-[data-testid="stVerticalBlock"] > div:has(.tpl-marker) + [data-testid="stHorizontalBlock"] button,
-[data-testid="stVerticalBlock"] > div:has(.tpl-marker) ~ [data-testid="stHorizontalBlock"] button {
+/* Quick Start template buttons — styled as cards */
+/* Targets buttons inside horizontal column blocks (only template buttons live there) */
+[data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"] [data-testid="stButton"] > button {
     background: rgba(108,99,255,0.10) !important;
     border: 1px solid rgba(108,99,255,0.28) !important;
     border-radius: 14px !important;
@@ -223,15 +222,12 @@ hr { border-color: rgba(255,255,255,0.08) !important; }
     transition: background 0.18s, border-color 0.18s, transform 0.15s !important;
     box-shadow: none !important;
 }
-[data-testid="stVerticalBlock"] > div:has(.tpl-marker) + [data-testid="stHorizontalBlock"] button:hover,
-[data-testid="stVerticalBlock"] > div:has(.tpl-marker) ~ [data-testid="stHorizontalBlock"] button:hover {
+[data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"] [data-testid="stButton"] > button:hover {
     background: rgba(108,99,255,0.22) !important;
     border-color: rgba(168,85,247,0.65) !important;
     transform: translateY(-2px) !important;
     color: #e9d5ff !important;
 }
-/* Hide the marker div itself */
-.tpl-marker { display: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -377,9 +373,6 @@ TEMPLATES = [
 
 if not st.session_state.messages and not st.session_state.conversation_ended:
     st.markdown("**⚡ Quick Start — pick a role template:**")
-    # Marker div: anchors the CSS :has() selector to scope card styles
-    # to only this row of buttons (avoids polluting other buttons on page)
-    st.markdown('<div class="tpl-marker"></div>', unsafe_allow_html=True)
     cols = st.columns(len(TEMPLATES))
     for col, tpl in zip(cols, TEMPLATES):
         with col:
