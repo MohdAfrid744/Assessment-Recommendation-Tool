@@ -205,29 +205,6 @@ hr { border-color: rgba(255,255,255,0.08) !important; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(108,99,255,0.4); border-radius: 3px; }
 
-/* Quick Start template buttons — styled as cards */
-/* Targets buttons inside horizontal column blocks (only template buttons live there) */
-[data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"] [data-testid="stButton"] > button {
-    background: rgba(108,99,255,0.10) !important;
-    border: 1px solid rgba(108,99,255,0.28) !important;
-    border-radius: 14px !important;
-    padding: 1.1rem 0.75rem !important;
-    height: auto !important;
-    min-height: 90px !important;
-    color: #c4b5fd !important;
-    font-weight: 600 !important;
-    font-size: 0.88rem !important;
-    line-height: 1.7 !important;
-    white-space: pre-line !important;
-    transition: background 0.18s, border-color 0.18s, transform 0.15s !important;
-    box-shadow: none !important;
-}
-[data-testid="stMainBlockContainer"] [data-testid="stHorizontalBlock"] [data-testid="stButton"] > button:hover {
-    background: rgba(108,99,255,0.22) !important;
-    border-color: rgba(168,85,247,0.65) !important;
-    transform: translateY(-2px) !important;
-    color: #e9d5ff !important;
-}
 </style>
 """, unsafe_allow_html=True)
 
@@ -376,13 +353,7 @@ if not st.session_state.messages and not st.session_state.conversation_ended:
     cols = st.columns(len(TEMPLATES))
     for col, tpl in zip(cols, TEMPLATES):
         with col:
-            # Single button — styled as a card via CSS, no separate HTML div
-            if st.button(
-                f"{tpl['icon']}\n{tpl['label']}",
-                key=f"main_tpl_{tpl['label']}",
-                use_container_width=True,
-                help=tpl["hint"],
-            ):
+            if st.button(f"{tpl['icon']} {tpl['label']}", key=f"main_tpl_{tpl['label']}", use_container_width=True):
                 st.session_state._inject_prompt = tpl["prompt"]
                 st.rerun()
     st.markdown("")
