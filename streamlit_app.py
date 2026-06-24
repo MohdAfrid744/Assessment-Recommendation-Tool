@@ -205,6 +205,40 @@ hr { border-color: rgba(255,255,255,0.08) !important; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(108,99,255,0.4); border-radius: 3px; }
 
+/* Quick Start template buttons — styled as cards */
+div[data-testid="stHorizontalBlock"] button {
+    background: rgba(108,99,255,0.10) !important;
+    border: 1px solid rgba(108,99,255,0.28) !important;
+    border-radius: 14px !important;
+    padding: 1.1rem 0.5rem !important;
+    height: auto !important;
+    min-height: 100px !important;
+    color: #c4b5fd !important;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+    white-space: pre-line !important;
+    transition: background 0.18s, border-color 0.18s, transform 0.15s !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem !important;
+}
+
+div[data-testid="stHorizontalBlock"] button * {
+    white-space: pre-line !important;
+    text-align: center !important;
+}
+
+div[data-testid="stHorizontalBlock"] button:hover {
+    background: rgba(108,99,255,0.22) !important;
+    border-color: rgba(168,85,247,0.65) !important;
+    transform: translateY(-2px) !important;
+    color: #e9d5ff !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -353,7 +387,12 @@ if not st.session_state.messages and not st.session_state.conversation_ended:
     cols = st.columns(len(TEMPLATES))
     for col, tpl in zip(cols, TEMPLATES):
         with col:
-            if st.button(f"{tpl['icon']} {tpl['label']}", key=f"main_tpl_{tpl['label']}", use_container_width=True):
+            if st.button(
+                f"{tpl['icon']}\n{tpl['label']}",
+                key=f"main_tpl_{tpl['label']}",
+                use_container_width=True,
+                help=tpl["hint"],
+            ):
                 st.session_state._inject_prompt = tpl["prompt"]
                 st.rerun()
     st.markdown("")
