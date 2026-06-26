@@ -150,12 +150,45 @@ html, body, [class*="css"] {
     color: #cbd5e1 !important;
 }
 
-/* Input box */
+/* Chat input — single clean oval pill, no double borders */
+
+/* Strip border/background from outer wrapper layers */
+[data-testid="stBottom"],
+[data-testid="stBottom"] > div,
+[data-testid="stBottom"] > div > div {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* The outermost chat input container MUST have no border */
 [data-testid="stChatInput"] {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Style the INNER container that Streamlit actually uses for its pill */
+[data-testid="stChatInput"] > div {
     background: rgba(255,255,255,0.06) !important;
     border: 1px solid rgba(108,99,255,0.4) !important;
     border-radius: 999px !important;
+}
+
+/* Make textarea text white and transparent */
+[data-testid="stChatInput"] textarea {
+    background: transparent !important;
     color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Style the send icon so it looks good and stands out */
+[data-testid="stChatInputSubmitButton"] {
+    color: #a855f7 !important;
+    background: transparent !important;
+}
+[data-testid="stChatInputSubmitButton"]:hover {
+    color: #c4b5fd !important;
 }
 
 /* Turn counter badge */
