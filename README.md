@@ -2,7 +2,7 @@
 
 A state-of-the-art, 100% stateless conversational AI agent designed to guide hiring managers from vague intents to precise assessment recommendations using Hybrid BM25 Retrieval and LLM Context Engineering.
 
-**🔗 Live Demo:** [Deployed on Streamlit Cloud](https://assessment-recommendation-tool-b9wzb3rngfkvts5qbrcll8.streamlit.app/) *(update this link after deployment)*
+**🔗 Live Demo:** [Deployed on Streamlit Cloud](https://assessment-recommendation-tool-ssgqkvxeen5yw4rqrz6umr.streamlit.app/).
 
 ---
 
